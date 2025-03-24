@@ -8,6 +8,9 @@ on:
     branches:
       - '*'
 
+env:
+  PREPROCESSOR_TIMEOUT: 900
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,6 +27,7 @@ jobs:
       - name: Build the JupyterLite site
         run: |
           cp README.md content
+          jupyter nbconvert --to notebook --inplace --ExecutePreprocessor.timeout=${{ env.PREPROCESSOR_TIMEOUT }} --execute content/*.ipynb
           jupyter lite build --contents content --output-dir dist
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

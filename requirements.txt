@@ -6,3 +6,7 @@ notebook~=7.3.2
 
 # Python kernel (optional)
 jupyterlite-pyodide-kernel==0.5.0
+
+
+# Allow pre-rendering by GitHub workflow
+sympy
